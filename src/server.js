@@ -10,7 +10,7 @@ import path from 'path';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname,'../public')));
+app.use(express.static(path.join(__dirname,'/public')));
 app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(cors());
@@ -24,7 +24,7 @@ const {db} = require("../database");
 
 
 app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'../public/index.html'));
+    res.sendFile(path.join(__dirname,'/public/index.html'));
 })
 
 app.post('/register', (req,res) => {
