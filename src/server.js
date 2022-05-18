@@ -17,14 +17,14 @@ app.use(cors());
 
 // Routers 
 const eventsRouter = require("../routes/Events");
-app.use("/events",eventsRouter);
+app.use("/api/events",eventsRouter);
 
 
 const {db} = require("../database");
 
 
 
-app.post('/register', (req,res) => {
+app.post('/api/register', (req,res) => {
     const {uname,email,password} = req.body;
     bcrypt.hash(password, 10).then( async (hash) => {
     db.query("Insert into user (name,email,password) value (?,?,?)",[uname,email,hash],(err,result)=>{
@@ -41,7 +41,7 @@ app.post('/register', (req,res) => {
 });
 
 /* login function */
-app.post("/login", (req,res) =>{
+app.post("/api/login", (req,res) =>{
 
     const { username, password } = req.body;
     db.query( "Select * from user where email = ? limit 1 ",[username], (err,result) =>{
