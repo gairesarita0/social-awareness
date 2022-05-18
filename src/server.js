@@ -23,9 +23,6 @@ app.use("/events",eventsRouter);
 const {db} = require("../database");
 
 
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'/public/index.html'));
-})
 
 app.post('/register', (req,res) => {
     const {uname,email,password} = req.body;
@@ -87,6 +84,9 @@ app.post("/login", (req,res) =>{
 });
 
 
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'/public/index.html'));
+})
 
 
 app.listen(8000,() => console.log("Listening on port 8000"));
