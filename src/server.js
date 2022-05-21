@@ -6,11 +6,12 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import {sign} from 'jsonwebtoken';
 import path from 'path';
+import {validateToken} from '../middleware/AuthMiddleware';
 
 
 const app = express();
 
-app.use(express.static(path.join(__dirname,'/public')));
+app.use(express.static(path.join(__dirname + '/public')));
 app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(cors());
@@ -37,6 +38,7 @@ app.post('/api/register', (req,res) => {
             }
         }); 
     });
+    
     
 });
 
@@ -80,13 +82,21 @@ app.post("/api/login", (req,res) =>{
     });
 
     
- 
+   
 });
+
+
+/* check authincated or not */
+app.get("/api/authOR",validateToken,(req,res)=>{
+    res.json(req.user);
+})
 
 
 app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/index.html'));
 })
+
+
 
 
 app.listen(8000,() => console.log("Listening on port 8000"));
