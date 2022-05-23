@@ -18,8 +18,17 @@ app.use(cors());
 
 // Routers 
 const eventsRouter = require("../routes/Events");
-app.use("/api/events",eventsRouter);
+const userManagement = require("../routes/Users");
+const advManagement = require("../routes/Advertise");
 
+
+app.use("/api/events",eventsRouter);
+app.use("/api/users", userManagement);
+app.use("/api/adv", advManagement);
+
+process.on('uncaughtException', function (error) {
+    console.log(error.stack);
+ });
 
 const {db} = require("../database");
 
@@ -28,12 +37,13 @@ const {db} = require("../database");
 app.post('/api/register', (req,res) => {
     const {uname,email,password} = req.body;
     bcrypt.hash(password, 10).then( async (hash) => {
-    db.query("Insert into user (name,email,password) value (?,?,?)",[uname,email,hash],(err,result)=>{
+    db.query("Insert into user (name,email,password,accesslevel) value (?,?,?,?)",[uname,email,hash,1],(err,result)=>{
             if(err){
                 console.log(err);
                 res.json({error:err});
             }
             else{
+                
                 res.json({success:"success"});
             }
         }); 
@@ -91,10 +101,10 @@ app.get("/api/authOR",validateToken,(req,res)=>{
     res.json(req.user);
 })
 
-
 app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'/public/index.html'));
 })
+
 
 
 
