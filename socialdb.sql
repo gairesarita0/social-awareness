@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `socialdb` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `socialdb`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: socialdb
@@ -24,13 +26,23 @@ DROP TABLE IF EXISTS `ad`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ad` (
   `adid` int unsigned NOT NULL AUTO_INCREMENT,
-  `addiscription` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
+  `addescription` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0',
   `date` date NOT NULL DEFAULT '0000-00-00',
   `title` varchar(50) NOT NULL DEFAULT '0',
   `adimage` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`adid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ad`
+--
+
+LOCK TABLES `ad` WRITE;
+/*!40000 ALTER TABLE `ad` DISABLE KEYS */;
+INSERT INTO `ad` VALUES (1,'Adv','0000-00-00','test','adv1653307722686sweetu.jpg');
+/*!40000 ALTER TABLE `ad` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `campaign`
@@ -50,8 +62,18 @@ CREATE TABLE `campaign` (
   `uid` int DEFAULT NULL,
   `approve` int DEFAULT '0',
   PRIMARY KEY (`cmid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `campaign`
+--
+
+LOCK TABLES `campaign` WRITE;
+/*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
+INSERT INTO `campaign` VALUES (1,'testing','Test','The sandwich he had eaten.','canberra','2022-05-16','Screenshot (48).png',1,1),(2,'real','what','hellow','is','2022-05-14','Screenshot (3).png',1,0),(3,'real','what','hellow','is','2022-05-14','Screenshot (3).png',1,0),(4,'real','what','hellow','is','2022-05-14','Screenshot (3).png',1,0),(5,'testing  ','Test','crystal pices and any thing else','canberra','2022-05-03','Screenshot (5).png',1,0),(6,'water','watering','','canberra','2022-05-04','Screenshot (4).png',1,2),(12,'handwashing','Test  ','skgjdokng','sasdsd','2022-04-27','sweetu.jpg',5,0),(13,'The','dance','The is the best event in town','canberra center','2022-05-27','20210702_163817.jpg',4,0),(14,'kkk','aaa','hjhghjghjghj','444','2022-05-04','eventss.jpg',4,0),(15,'testing','test','hing hing','canberra','2022-05-10','events1653299334033Sarita Gaire.png',4,0);
+/*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `comments`
@@ -69,6 +91,15 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profile`
@@ -91,6 +122,15 @@ CREATE TABLE `profile` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `profile`
+--
+
+LOCK TABLES `profile` WRITE;
+/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -105,8 +145,18 @@ CREATE TABLE `user` (
   `accesslevel` int DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `Email_UNIQUE` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Admin','admin@admin.com','$2b$10$9MNsRQwAIeZ8nqwKUdum5eH1iOmFBO6L9zCmS2m1hU6pZgZY8KLTy',3),(2,'sarita gaire','gairesarita0@gmail.com','$2b$10$VcaBrXGgiq9rsOZWPoqv9.ah5nx9JamV7m1vKSnBbK23r4grrRcJW',1),(4,'sarita','sarita@sarita.com','$2b$10$K3qyJqgm.E3sWkG2YvwR5emKlRkpzZFflyK.cH9EB1yNpkEEJclPe',3),(5,'sans','sans@123.com','$2b$10$.I0j0/HBQlrBEo186PzyTu8kQ/RYDJm.Hze4RJT0qbmCy8ZL.twE2',3),(6,'nipuni','nipuni@123.com','$2b$10$Kau/dzNC49Z2hfnTid8b9.f6AsVYaFJuV6yKlkrIxEz0KZjSkd/wy',1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -117,4 +167,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-21 14:44:08
+-- Dump completed on 2022-05-23 23:15:58
